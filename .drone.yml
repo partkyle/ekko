@@ -2,5 +2,5 @@ image: mischief/docker-golang
 env:
   - GOPATH=$PWD
 script:
-  - go build ekko
+  - go build ekko -o ekko-`git rev-parse HEAD`
   - go test -v ekko
