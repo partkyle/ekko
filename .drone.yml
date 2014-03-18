@@ -2,9 +2,18 @@ image: mischief/docker-golang
 env:
   - GOPATH=$PWD
 script:
-  - go build ekko
+  - go build -o /tmp/ekko ekko
   - go test -v ekko
 notify:
   email:
     recipients:
       - partkyle@gmail.com
+publish:
+  s3:
+    acl: public-read
+    region: us-west-1
+    access_key: {{aws_access_key}}
+    secret_key: {{aws_secret_key}}
+    bucket: {{aws_bucket}}
+    source: /tmp/ekko
+    target: latest/
