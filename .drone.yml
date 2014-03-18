@@ -1,0 +1,6 @@
+image: mischief/docker-golang
+env:
+  - GOPATH=$PWD
+script:
+  - go build ekko
+  - go test -v ekko
