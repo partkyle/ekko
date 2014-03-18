@@ -4,3 +4,7 @@ env:
 script:
   - go build ekko
   - go test -v ekko
+notify:
+  email:
+    recipients:
+      - partkyle@gmail.com
