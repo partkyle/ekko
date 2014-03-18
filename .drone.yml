@@ -1,8 +1,9 @@
 image: mischief/docker-golang
 env:
   - GOPATH=$PWD
+  - EKKO_EX=/tmp/ekko
 script:
-  - go build -o /tmp/ekko ekko
+  - go build -o $EKKO_EX ekko
   - go test -v ekko
 notify:
   email:
@@ -11,9 +12,8 @@ notify:
 publish:
   s3:
     acl: public-read
-    region: us-west-1
     access_key: {{aws_access_key}}
     secret_key: {{aws_secret_key}}
     bucket: {{aws_bucket}}
-    source: /tmp/ekko
+    source: $EKKO_EX
     target: /latest
