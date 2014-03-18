@@ -10,10 +10,10 @@ notify:
     recipients:
       - partkyle@gmail.com
 publish:
-  s3:
-    acl: public-read
-    access_key: {{aws_access_key}}
-    secret_key: {{aws_secret_key}}
-    bucket: {{aws_bucket}}
-    source: $EKKO_EX
-    target: /latest
+  ssh:
+    user: git
+    host: themoon.partkyle.com
+    remote_path: /tmp
+    commands:
+      - ls
+      - ls -ltr
